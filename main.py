@@ -35,9 +35,9 @@ def cost_per_credit(annual_cost, credits):
     return annual_cost / (SEMESTERS_PER_YEAR * credits)
 
 
-def cost_per_class(annual_cost):
+def cost_per_class(annual_cost, credits):
     """Give back what one 50-minute CS 1430 class meeting costs."""
-    return annual_cost / (SEMESTERS_PER_YEAR * CS1430_MEETINGS_PER_SEMESTER * CS1430_CREDITS)
+    return cost_per_credit(annual_cost, credits) * CS1430_CREDITS / CS1430_MEETINGS_PER_SEMESTER
 
 
 # ---- PROGRAM ----
@@ -73,7 +73,7 @@ def main():
         elif choice == "4":
             print("Cost per credit:", f"{cost_per_credit(annual_cost, credits):.2f}")
         elif choice == "5":
-            print("Cost per class:", f"{cost_per_class(annual_cost):.2f}")
+            print("Cost per class:", f"{cost_per_class(annual_cost, credits):.2f}")
         else:
             print("Invalid choice. Please try again.")
 
